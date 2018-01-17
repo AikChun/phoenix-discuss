@@ -3,7 +3,7 @@ defmodule Discuss.Topic do
 
   schema "topics" do
     field :title, :string
-    timestamps
+    timestamps()
   end
 
   def changeset(struct, params \\ %{}) do
