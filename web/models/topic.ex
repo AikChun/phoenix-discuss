@@ -4,6 +4,7 @@ defmodule Discuss.Topic do
   schema "topics" do
     field :title, :string
     timestamps()
+    belongs_to :user, Discuss.User
   end
 
   def changeset(struct, params \\ %{}) do
