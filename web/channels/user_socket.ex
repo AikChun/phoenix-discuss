@@ -5,8 +5,12 @@ defmodule Discuss.UserSocket do
   transport :websocket, Phoenix.Transports.WebSocket
 
   def connect(%{"token" => token}, socket) do
-    IO.puts token
-    {:ok, socket}
+    case Phoenix.Token.verify(socket, "key", token) do
+      {:ok, user_id} ->
+        {:ok, assign(socket, :user_id, user_id)}
+      {:error, error} ->
+        :error
+    end
   end
 
   def id(_socket), do: nil
