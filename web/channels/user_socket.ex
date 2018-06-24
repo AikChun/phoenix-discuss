@@ -4,7 +4,8 @@ defmodule Discuss.UserSocket do
   channel "comments:*", Discuss.CommentsChannel
   transport :websocket, Phoenix.Transports.WebSocket
 
-  def connect(_params, socket) do
+  def connect(%{"token" => token}, socket) do
+    IO.puts token
     {:ok, socket}
   end
 
